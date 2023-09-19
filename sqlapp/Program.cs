@@ -1,7 +1,16 @@
+using sqlapp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = "Endpoint=https://appconfig213.azconfig.io;Id=t+p0;Secret=coqHojPjjfA8+nYGAqINNTa4/F+M3Fn/F62h5BTXJbM=";
+builder.Host.ConfigureAppConfiguration(builder =>
+{
+    builder.AddAzureAppConfiguration(connectionString);
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<IProductService, ProductService>();
 
 var app = builder.Build();
 
